@@ -1,6 +1,6 @@
 package lab2;
-// aqui é public, nao private
-private class RegistroTempoOnline {
+
+public class RegistroTempoOnline {
     private String nomeDisciplina;
     private int tempoOnlineEsperado;
     private int tempoOnlineGasto;
