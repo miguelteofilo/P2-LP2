@@ -14,6 +14,7 @@ public class Disciplina {
     public void cadastraHoras(int horas) {
         this.horasEstudo += horas;
     }
+    //aqui voce colocou cadastroNOta, mas é cadastroNota
     public void cadastroNOta(int nota, double valorNota) {
         if (nota >= 1 && nota <= 4) {
             this.notas[nota - 1] = valorNota;
