@@ -5,7 +5,7 @@ private class RegistroTempoOnline {
     private int tempoOnlineEsperado;
     private int tempoOnlineGasto;
     public RegistroTempoOnline(String nomeDisciplina) {
-        this(nomeDisciplina. 120)
+        this(nomeDisciplina, 120);
     }
     public RegistroTempoOnline(String nomeDisciplina, int tempoOnlineEsperado) {
         this.nomeDisciplina =nomeDisciplina;
@@ -19,6 +19,6 @@ private class RegistroTempoOnline {
         return this.tempoOnlineGasto >= this.tempoOnlineEsperado;
     }
     public String toString() {
-        return this.nomeDisciplina + " " + this.tempoOnlineGasto + "/" + this.tempoOnlineEsperado
+        return this.nomeDisciplina + " " + this.tempoOnlineGasto + "/" + this.tempoOnlineEsperado;
     }
 }

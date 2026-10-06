@@ -1,5 +1,5 @@
 package lab2;
-import java.util.*
+import java.util.*;
 
 public class Disciplina {
     private String nomeDisciplina;
@@ -24,7 +24,7 @@ public class Disciplina {
         for (double n : this.notas) {
             soma += n;
         }
-        return soma / 4.0
+        return soma / 4.0;
     }
     public boolean aprovado() {
         return calculaMedia() >= 7.0;
