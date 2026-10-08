@@ -1,4 +1,5 @@
 package lab2;
+import java.util.Arrays;
 
 public class RegistroResumos {
     private String[] temas;
@@ -6,6 +7,7 @@ public class RegistroResumos {
     private int limite;
     private int quantidade;
     private int proximoIndice;
+
     public RegistroResumos(int numeroDeResumos) {
         this.limite = numeroDeResumos;
         this.temas = new String[numeroDeResumos];
@@ -13,6 +15,7 @@ public class RegistroResumos {
         this.quantidade = 0;
         this.proximoIndice = 0;
     }
+
     public void adiciona(String tema, String conteudo) {
         for (int i = 0; i < quantidade; i++) {
             if (temas[i] != null && temas[i].equals(tema)) {
@@ -27,9 +30,11 @@ public class RegistroResumos {
         }
         proximoIndice = (proximoIndice + 1) % limite;
     }
+
     public void adicionaResumo(String tema, String conteudo) {
         adiciona(tema, conteudo);
     }
+
     public String[] pegaResumos() {
         String[] resultado = new String[quantidade];
         for (int i = 0; i < quantidade; i++) {
@@ -37,6 +42,7 @@ public class RegistroResumos {
         }
         return resultado;
     }
+
     public String imprimeResumos() {
         StringBuilder sb = new StringBuilder();
         sb.append("- ").append(quantidade).append(" resumo(s) cadastrado(s)\n");
@@ -49,12 +55,15 @@ public class RegistroResumos {
         }
         return sb.toString();
     }
+
     public int conta() {
         return quantidade;
     }
+
     public int contaResumos() {
         return conta();
     }
+
     public boolean temResumo(String tema) {
         for (int i = 0; i < quantidade; i++) {
             if (temas[i] != null && temas[i].equals(tema)) {
@@ -62,5 +71,27 @@ public class RegistroResumos {
             }
         }
         return false;
+    }
+
+    public String[] busca(String chaveDeBusca) {
+        if (chaveDeBusca == null || chaveDeBusca.trim().isEmpty()) {
+            return new String[0];
+        }
+
+        int cont = 0;
+        for (int i = 0; i < quantidade; i++) {
+            if (conteudos[i] != null && conteudos[i].toLowerCase().contains(chaveDeBusca.toLowerCase())) {
+                cont++;
+            }
+        }
+        String[] temasEncontrados = new String[cont];
+        int idx = 0;
+        for (int i = 0; i < quantidade; i++) {
+            if (conteudos[i] != null && conteudos[i].toLowerCase().contains(chaveDeBusca.toLowerCase())) {
+                temasEncontrados[idx++] = temas[i];
+            }
+        }
+        Arrays.sort(temasEncontrados);
+        return temasEncontrados;
     }
 }
