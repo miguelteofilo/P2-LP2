@@ -17,56 +17,49 @@ public class RegistroResumos {
     }
 
     public void adiciona(String tema, String conteudo) {
-        for (int i = 0; i < quantidade; i++) {
-            if (temas[i] != null && temas[i].equals(tema)) {
-                conteudos[i] = conteudo;
+        for (int i = 0; i < this.quantidade; i++) {
+            if (this.temas[i] != null && this.temas[i].equals(tema)) {
+                this.conteudos[i] = conteudo;
                 return;
             }
         }
-        temas[proximoIndice] = tema;
-        conteudos[proximoIndice] = conteudo;
-        if (quantidade < limite) {
-            quantidade++;
-        }
-        proximoIndice = (proximoIndice + 1) % limite;
-    }
 
-    public void adicionaResumo(String tema, String conteudo) {
-        adiciona(tema, conteudo);
+        this.temas[this.proximoIndice] = tema;
+        this.conteudos[this.proximoIndice] = conteudo;
+
+        if (this.quantidade < this.limite) {
+            this.quantidade++;
+        }
+
+        this.proximoIndice = (this.proximoIndice + 1) % this.limite;
     }
 
     public String[] pegaResumos() {
-        String[] resultado = new String[quantidade];
-        for (int i = 0; i < quantidade; i++) {
-            resultado[i] = temas[i] + ": " + conteudos[i];
+        String[] resultado = new String[this.quantidade];
+        for (int i = 0; i < this.quantidade; i++) {
+            resultado[i] = this.temas[i] + ": " + this.conteudos[i];
         }
         return resultado;
     }
 
     public String imprimeResumos() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("- ").append(quantidade).append(" resumo(s) cadastrado(s)\n");
-        sb.append("- ");
-        for (int i = 0; i < quantidade; i++) {
-            sb.append(temas[i]);
-            if (i < quantidade - 1) {
-                sb.append(" | ");
+        String saida = "- " + this.quantidade + " resumo(s) cadastrado(s)\n- ";
+        for (int i = 0; i < this.quantidade; i++) {
+            saida += this.temas[i];
+            if (i < this.quantidade - 1) {
+                saida += " | ";
             }
         }
-        return sb.toString();
+        return saida;
     }
 
     public int conta() {
-        return quantidade;
-    }
-
-    public int contaResumos() {
-        return conta();
+        return this.quantidade;
     }
 
     public boolean temResumo(String tema) {
-        for (int i = 0; i < quantidade; i++) {
-            if (temas[i] != null && temas[i].equals(tema)) {
+        for (int i = 0; i < this.quantidade; i++) {
+            if (this.temas[i] != null && this.temas[i].equals(tema)) {
                 return true;
             }
         }
@@ -74,24 +67,23 @@ public class RegistroResumos {
     }
 
     public String[] busca(String chaveDeBusca) {
-        if (chaveDeBusca == null || chaveDeBusca.trim().isEmpty()) {
-            return new String[0];
+        int contador = 0;
+        for (int i = 0; i < this.quantidade; i++) {
+            if (this.conteudos[i].toLowerCase().contains(chaveDeBusca.toLowerCase())) {
+                contador++;
+            }
         }
 
-        int cont = 0;
-        for (int i = 0; i < quantidade; i++) {
-            if (conteudos[i] != null && conteudos[i].toLowerCase().contains(chaveDeBusca.toLowerCase())) {
-                cont++;
+        String[] resultados = new String[contador];
+        int indice = 0;
+        for (int i = 0; i < this.quantidade; i++) {
+            if (this.conteudos[i].toLowerCase().contains(chaveDeBusca.toLowerCase())) {
+                resultados[indice] = this.temas[i];
+                indice++;
             }
         }
-        String[] temasEncontrados = new String[cont];
-        int idx = 0;
-        for (int i = 0; i < quantidade; i++) {
-            if (conteudos[i] != null && conteudos[i].toLowerCase().contains(chaveDeBusca.toLowerCase())) {
-                temasEncontrados[idx++] = temas[i];
-            }
-        }
-        Arrays.sort(temasEncontrados);
-        return temasEncontrados;
+
+        Arrays.sort(resultados);
+        return resultados;
     }
 }

@@ -1,26 +1,27 @@
 package lab2;
 
 public class Resumo {
- ;   private String tema;
+    private String tema;
     private String conteudo;
 
     public Resumo(String tema, String conteudo) {
         this.tema = tema;
         this.conteudo = conteudo;
     }
+
     public String getTema() {
-        return tema;
+        return this.tema;
     }
+
     public String getConteudo() {
-        return conteudo;
+        return this.conteudo;
     }
+
     public boolean contemTexto(String chave) {
-        if (chave == null || chave.isEmpty()) {
-            return false;
-        }
-        return conteudo.toLowerCase().contains(chave.toLowerCase());
+        return this.conteudo.toLowerCase().contains(chave.toLowerCase());
     }
+
     public String toString() {
-        return tema + ": " + conteudo;
+        return this.tema + ": " + this.conteudo;
     }
 }
