@@ -43,7 +43,7 @@ public class Disciplina {
     }
 
     // Salva a nota na posição correta
-    public void cadastroNota(int nota, double valorNota) {
+    public void cadastraNota(int nota, double valorNota) {
         if (nota >= 1 && nota <= this.notas.length) {
             this.notas[nota - 1] = valorNota;
         }
