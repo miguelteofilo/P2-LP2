@@ -7,6 +7,7 @@ public class Disciplina {
     private double[] notas;
     private int[] pesos;
 
+    // Construtor padrão para 4 notas com peso 1
     public Disciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
         this.horasEstudo = 0;
@@ -17,6 +18,7 @@ public class Disciplina {
         }
     }
 
+    // Construtor para número customizado de notas (peso igual a 1)
     public Disciplina(String nomeDisciplina, int numNotas) {
         this.nomeDisciplina = nomeDisciplina;
         this.horasEstudo = 0;
@@ -27,6 +29,7 @@ public class Disciplina {
         }
     }
 
+    // Construtor com notas e pesos personalizados
     public Disciplina(String nomeDisciplina, int numNotas, int[] pesos) {
         this.nomeDisciplina = nomeDisciplina;
         this.horasEstudo = 0;
@@ -34,16 +37,19 @@ public class Disciplina {
         this.pesos = pesos;
     }
 
+    // Acumula as horas de estudo
     public void cadastraHoras(int horas) {
         this.horasEstudo += horas;
     }
 
+    // Salva a nota na posição correta
     public void cadastroNota(int nota, double valorNota) {
         if (nota >= 1 && nota <= this.notas.length) {
             this.notas[nota - 1] = valorNota;
         }
     }
 
+    // Calcula a média ponderada das notas
     private double calculaMedia() {
         double somaNotas = 0;
         int somaPesos = 0;
@@ -60,6 +66,7 @@ public class Disciplina {
         return somaNotas / somaPesos;
     }
 
+    // Verifica se o aluno foi aprovado por média
     public boolean aprovado() {
         if (calculaMedia() >= 7.0) {
             return true;
@@ -67,6 +74,7 @@ public class Disciplina {
         return false;
     }
 
+    // Formata a saída da disciplina
     public String toString() {
         return this.nomeDisciplina + " " + this.horasEstudo + " " + calculaMedia() + " " + Arrays.toString(this.notas);
     }
